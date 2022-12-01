@@ -1,0 +1,20 @@
+.chat__frame {
+    width: 600px;
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.date {
+    text-align: right;
+}
+
+.current__user__message {
+    background-color: red;
+}
+
+.another__user__message{
+    background-color: blue;
+}
