@@ -1,17 +1,19 @@
-import {useEffect} from "react";
-import {useNavigate} from "react-router-dom";
+import LogInPage from "../pages/Login";
 
-function ProtectedRouter({children}: any) {
-    let navigate = useNavigate();
+
+interface IProtectedRouterProps {
+    children: JSX.Element
+}
+
+function ProtectedRouter({children}: IProtectedRouterProps) {
     const loggedIn: string = localStorage.getItem('loggedIn') || "false";
-    useEffect(() => {
-        if (loggedIn === "false") {
-            console.log("fdsfs")
-            navigate("/login")
-        }
-    }, [loggedIn])
+    if (loggedIn === "false") {
+        return <LogInPage/>
+    }
     if (loggedIn === "true") {
         return children
+    } else {
+        return <>{"ERROOR"}</>
     }
 
 }

@@ -1,5 +1,7 @@
+import {Ticket} from "./TicketItemTypes";
+
 export interface TicketsState {
-    tickets: any[];
+    tickets: Ticket[];
     totalPages: number;
     loading: boolean;
     error: null | string;
@@ -27,12 +29,12 @@ interface FetchTicketsSuccessAction {
 
 interface FetchTicketsErrorAction {
     type: TicketsActionTypes.FETCH_TICKETS_ERROR;
-    payload: string;
+    payload: Ticket;
 }
 
 interface CreateTicketsAction {
     type: TicketsActionTypes.CREATE_TICKET;
-    payload: string;
+    payload: Ticket;
 }
 
 interface SetTicketsPage {

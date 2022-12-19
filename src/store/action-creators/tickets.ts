@@ -22,12 +22,12 @@ export const fetchTickets = (page = 1, limit = 2, user_id: string) => {
 
                 }
             )
-            const totalCount: any = response.headers["x-total-count"]
+            const totalCount: string = response.headers["x-total-count"] || "20"
             dispatch(
                 {
                     type: TicketsActionTypes.FETCH_TICKETS_SUCCESS,
                     payload: response.data,
-                    totalPages: getPageCount(totalCount, limit)
+                    totalPages: getPageCount(Number(totalCount), limit)
                 }
             )
         } catch (e) {

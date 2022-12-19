@@ -1,21 +1,14 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import classes from "../styles/Navbar.module.css";
 import {Link} from "react-router-dom";
 import {useActions} from "../hooks/useActions";
 import {useTypedSelector} from "../hooks/useTypedSelector";
+import {useLoggedIn} from "../hooks/useLoggedIn";
 
 const Navbar = () => {
     const {loggedIn} = useTypedSelector(state => state.users)
     const {setLoggedIn} = useActions()
-    useEffect(() => {
-        const loggedIn = localStorage.getItem("loggedIn")
-        console.log(loggedIn)
-        if (loggedIn === "true") {
-            setLoggedIn(true)
-        } else {
-            setLoggedIn(false)
-        }
-    }, [loggedIn])
+    useLoggedIn(setLoggedIn, loggedIn)
 
     return (
         <div className={classes.navbar}>

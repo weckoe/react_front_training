@@ -1,13 +1,13 @@
-import React, {useEffect, useState, FC} from 'react';
+import React, {useEffect, useState, FC, ChangeEvent} from 'react';
 import TicketItemComponent from "./TicketItem";
 import classes from "../styles/TicketItem.module.css";
-import Button from "../UI/button/Button";
-import Pagination from "../UI/pagination/Pagination";
+import Button from '@mui/material/Button';
 import Modal from "../UI/modals/Modal";
 import CreateTicket from "./CreateTicket";
 import {useActions} from "../hooks/useActions";
 import {Ticket} from "../types/TicketItemTypes";
 import {useTypedSelector} from "../hooks/useTypedSelector";
+import Pagination from '@mui/material/Pagination';
 
 const TicketListComponent: FC = () => {
     const {page, error, loading, tickets, limit, totalPages} = useTypedSelector(state => state.tickets)
@@ -18,7 +18,7 @@ const TicketListComponent: FC = () => {
         fetchTickets(page, limit, user_id!)
     }, [page])
 
-    const changePage = (page: number) => {
+    const changePage = (event: ChangeEvent<unknown>, page: number) => {
         setTicketPage(page)
     }
     const addTicket = (newTicket: Ticket) => {
@@ -28,7 +28,7 @@ const TicketListComponent: FC = () => {
     const [modal, setModal] = useState(false)
 
     return (
-        <div>
+        <div className={classes.content}>
             {!loading
                 ? (tickets as Ticket[]).map((ticket) => {
                     return (<div className={classes.frame}>
@@ -44,14 +44,13 @@ const TicketListComponent: FC = () => {
             }
             {error && <h1>ERROR</h1>}
             <Pagination
-                totalPages={totalPages}
-                page={page}
-                changePage={changePage}
+                count={totalPages}
+                onChange={changePage}
             />
             <Modal visible={modal} setVisible={setModal}>
                 <CreateTicket addTicket={addTicket}/>
             </Modal>
-            <Button onClick={() => setModal(true)}>Create Ticket</Button>
+            <Button variant="contained" onClick={() => setModal(true)}>Create Ticket</Button>
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import React, {ChangeEvent, FC} from 'react';
 import classes from "../styles/LogIn.module.css";
-import Input from "../UI/input/Input"
-import Button from "../UI/button/Button";
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import LoginTypes from "../types/LoginTypes";
 
 const LogIn: FC<LoginTypes> = ({login, setUsername, setPassword}): JSX.Element => {
@@ -12,20 +12,19 @@ const LogIn: FC<LoginTypes> = ({login, setUsername, setPassword}): JSX.Element =
                     Sign In
                 </div>
                 <div>
-                    <Input
+                    <TextField
+                        label="Username" variant="standard"
                         onChange={(e: ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
-                        placeholder="Username"
-                        type="text"
                     />
                 </div>
                 <div className={classes.LogInPasswordInput}>
-                    <Input
+                    <TextField
+                        label="Password" variant="standard"
                         onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-                        placeholder="Password" type="password"
                     />
                 </div>
                 <div className={classes.LogInButton}>
-                    <Button onClick={login}>Login</Button>
+                    <Button onClick={login} variant="contained">Login</Button>
                 </div>
             </div>
         </div>

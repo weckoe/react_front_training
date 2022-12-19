@@ -4,14 +4,14 @@ import Home from "./pages/Home";
 import Tickets from "./pages/Tickets";
 import ProtectedRouter from "./routes/ProtectedRouter";
 import LogInPage from "./pages/Login";
-import Navbar from "./components/Navbar";
 import LogOut from "./components/LogOut";
 import Chat from "./pages/Chat";
+import MUINavbar from "./components/MUINavbar";
 
 const App: React.FC = (): JSX.Element => {
     return (
         <>
-            <Navbar/>
+            <MUINavbar/>
             <Routes>
                 <Route path='/home' element=
                     {
