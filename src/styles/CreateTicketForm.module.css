@@ -1,0 +1,15 @@
+.create__ticket {
+    display: flex;
+}
+
+.title {
+    margin-right: 5px;
+}
+
+.description {
+    margin-left: 5px;
+}
+
+.button {
+    text-align: center;
+}

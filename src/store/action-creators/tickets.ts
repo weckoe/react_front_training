@@ -1,8 +1,14 @@
 import {TicketsActionTypes} from "../../types/Tickets";
-import axios from "axios";
 import {getPageCount} from "../../utils/pagesCounter";
 import {Ticket} from "../../types/TicketItemTypes";
 import {Dispatch} from "redux";
+import FetchTickets from "../../API/fetchTickets";
+
+
+export interface Response {
+    data: Ticket[],
+    x_total_count: string
+}
 
 export const fetchTickets = (page = 1, limit = 2, user_id: string) => {
     return async function (dispatch: Dispatch) {
@@ -11,18 +17,8 @@ export const fetchTickets = (page = 1, limit = 2, user_id: string) => {
                 {type: TicketsActionTypes.FETCH_TICKETS}
             )
 
-            const response = await axios.get(
-                'https://jsonplaceholder.typicode.com/todos', {
-                    params: {
-                        _limit: limit,
-                        _page: page,
-                        userId: user_id
-
-                    }
-
-                }
-            )
-            const totalCount: string = response.headers["x-total-count"] || "20"
+            const response = await FetchTickets(limit, page, user_id)
+            const totalCount: string = response.x_total_count
             dispatch(
                 {
                     type: TicketsActionTypes.FETCH_TICKETS_SUCCESS,
