@@ -18,3 +18,7 @@
 .page__current {
     background: darkblue;
 }
+
+.button {
+    display: none;
+}
